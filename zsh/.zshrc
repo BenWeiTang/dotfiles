@@ -31,6 +31,7 @@ zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
 
 # Homebrew
 export PATH=/opt/homebrew/bin:$PATH
+alias brew-update="brew update && brew upgrade && brew autoremove"
 
 # Mason
 export PATH="~/.local/share/nvim/mason:$PATH"
