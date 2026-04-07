@@ -1,4 +1,4 @@
 theme = "Kanso Zen"
-font-size = 18
-
+font-size = 14
+gtk-tabs-location = hidden
 maximize = true
