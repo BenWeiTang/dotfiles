@@ -119,7 +119,7 @@ fi
 eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv bash)"
 
 alias python=python3
-alias update="sudo apt update && sudo apt upgrade -y && sudo snap refresh"
+alias update="sudo apt update && sudo apt upgrade -y && sudo apt autoremove && sudo snap refresh"
 alias v='nvim'
 alias lg='lazygit'
 alias t='tmux'
