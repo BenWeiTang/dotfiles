@@ -130,3 +130,45 @@ eval "$(pixi completion --shell bash)"
 export NVM_DIR="$HOME/.config/nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+# Custom cd that also ls, except for home
+function cd() {
+  new_directory="$*";
+  if [ $# -eq 0 ]; then
+    new_directory=${HOME};
+  fi;
+
+  # Execute the builtin cd
+  builtin cd "${new_directory}" || return
+
+  # Only run ls if the current directory is NOT the home directory
+  if [ "$PWD" != "$HOME" ]; then
+    /bin/ls -lhF --time-style=long-iso --color=auto --ignore=lost+found
+  fi
+}
+
+# Source - https://stackoverflow.com/a/48250807
+# Posted by awesoon, modified by community. See post 'Timeline' for change history
+# Retrieved 2026-04-13, License - CC BY-SA 3.0
+extract () {
+  if [ -f "$1" ] ; then
+    case $1 in
+      *.tar.bz2)   tar xvjf "$1" ;;
+      *.tar.gz)    tar xvzf "$1" ;;
+      *.tar.xz)    tar xvJf "$1" ;;
+      *.bz2)       bunzip2 "$1" ;;
+      *.rar)       unrar x "$1" ;;
+      *.gz)        gunzip "$1" ;;
+      *.tar)       tar xvf "$1" ;;
+      *.tbz2)      tar xvjf "$1" ;;
+      *.tgz)       tar xvzf "$1" ;;
+      *.zip)       unzip "$1" ;;
+      *.jar)       unzip "$1" ;;
+      *.Z)         uncompress "$1" ;;
+      *.7z)        7z x "$1" ;;
+      *)           echo "'$1' cannot be extracted via >extract<" ;;
+    esac
+  else
+    echo "'$1' is not a valid file"
+  fi
+}
