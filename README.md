@@ -24,6 +24,16 @@ cd ~
 git clone --recursive git@github.com:BenWeiTang/dotfiles.git
 ```
 
+## Use a Configuration
+
+```bash
+# In the dotfiles directory
+cd ~/dotfiles/
+
+# As an exmaple, stow ghostty
+stow ghostty
+```
+
 # Why NeoVim is a Submodule
 
 I want to keep `nvim` as its own repository because I also use it on Windows machines where `stow` does not necessary work. In this case, I want to directly clone the nvim repo into the config path on Windows, which is `C:\Users\<YourUsername>\AppData\Local\nvim\`.
